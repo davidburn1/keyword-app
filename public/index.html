@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+<body>
+    <div ng-app="myApp" ng-controller="myController" class="container" >
+
+    
+    <h1> Type some text here </h1>
+    <textarea name="myText" rows="10" cols="150" ng-model="theText" ></textarea>
+
+    <br>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2> Keywords </h2>
+            <ul>
+                <li ng-repeat="k in keywords">{{k}}</li>
+            </ul>
+        </div>
+
+        <div class="col-md-6">
+            <h2> Key phrases </h2>
+            <ul>
+                <li ng-repeat="k in keyphrases">{{k}}</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="./angular.min.js"></script>
+<script src="./controller.js"></script>
+
+<script>
+$(document).ready(function() {
+
+    // process the form
+    $('form').submit(function(event) {
+
+        var formData = {'myText' : $('textarea[name=myText]').val() };
+
+        $.ajax({
+            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+            url         : 'ajax', // the url where we want to POST
+            data        : formData, // our data object
+            dataType    : 'json', // what type of data do we expect back from the server
+            encode          : true
+        })
+            .done(function(data) {
+                console.log(data);
+                $("#output").html(JSON.stringify(data));
+                
+            });
+
+        event.preventDefault();
+    });
+
+});
+</script>
+
+</body>
+</html>
