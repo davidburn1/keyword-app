@@ -16,9 +16,10 @@
         "url": ""
     },
     "homepage": "",
-    "dependencies" :{ 
-        "retext" : "latest", 
-        "retext-keywords" : "latest", 
-        "express" : "latest"
+    "dependencies": {
+        "retext": "latest",
+        "retext-pos": "latest",
+        "retext-keywords": "latest",
+        "express": "latest"
     }
 }
